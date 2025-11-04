@@ -17,7 +17,25 @@ app.use((req, res, next) => {
   
   next();
 });
-
+app.get(".well-known/apple-app-site-association", (req, res) => {
+    return res.status(200).json({
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "WF434D82N7.com.theodo.xcodecloudtest",
+        "paths": ["*"]
+      }
+    ]
+  },
+  "activitycontinuation": {
+    "apps": ["WF434D82N7.com.theodo.xcodecloudtest"]
+  },
+  "webcredentials": {
+    "apps": ["WF434D82N7.com.theodo.xcodecloudtest"]
+  }
+    })
+});
 // Login endpoint
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
